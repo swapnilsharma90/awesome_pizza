@@ -67,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
                 if (progress < 33) {
+
+                    pizzaCircle.setSlices(4);
+
                     tvReg.setTextColor(getResources().getColor(R.color.colorAccent));
                     tvRegDesc.setTextColor(getResources().getColor(R.color.colorAccent));
 
@@ -86,19 +89,15 @@ public class MainActivity extends AppCompatActivity {
 
                     tvMedium.setTextColor(getResources().getColor(android.R.color.white));
                     tvLarge.setTextColor(getResources().getColor(android.R.color.white));
-
-
                     resizePizza(270);
 
                 }
                 if (progress > 33 && (progress < 70)) {
 
+                    pizzaCircle.setSlices(6);
 
                     //   pizzaCircle
-
-
                     resizePizza(285);
-
 
                     tvReg.setTextSize(14);
                     tvRegDesc.setTextSize(10);
@@ -124,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 if (progress > 70) {
+
+                    pizzaCircle.setSlices(8);
 
                     resizePizza(295);
 
@@ -165,7 +166,10 @@ public class MainActivity extends AppCompatActivity {
 
         pizzaCircle.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         pizzaCircle.setFillColor(0x33ffffff);
+
         pizzaCircle.setCircleRadius(radius);
+        pizzaCircle.setSlices(8);
+
         pizzaCircle.invalidate();
 
     }

@@ -1,4 +1,5 @@
 package com.ma.android.pizza;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -7,14 +8,24 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+
 /**
  * Created by swapsharma on 6/6/16.
  */
-public class CircleView extends View{
+public class CircleView extends View {
 
+
+    private int slices;
     private Paint circlePaint;
     private Paint circleStrokePaint;
+    private Paint circleRedPaint;
+
+    private Paint circleGreenPaint;
+
     private RectF circleArc;
+
+    private Paint circleDividerPaint;
+
 
     // Attrs
     private int circleRadius;
@@ -35,12 +46,30 @@ public class CircleView extends View{
         circlePaint.setStyle(Paint.Style.FILL);
         circleStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         circleStrokePaint.setStyle(Paint.Style.STROKE);
-        circleStrokePaint.setStrokeWidth(2);
+        circleStrokePaint.setStrokeWidth(40);
         circleStrokePaint.setColor(circleStrokeColor);
+
+
+        circleDividerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        circleDividerPaint.setStyle(Paint.Style.STROKE);
+        circleDividerPaint.setStrokeWidth(.5f);
+        circleDividerPaint.setColor(circleStrokeColor);
+
+
+        circleRedPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        circleRedPaint.setStyle(Paint.Style.STROKE);
+        circleRedPaint.setStrokeWidth(10);
+        circleRedPaint.setColor(getResources().getColor(R.color.colorAccent));
+
+
+        circleGreenPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        circleGreenPaint.setStyle(Paint.Style.FILL);
+        circleGreenPaint.setStrokeWidth(10);
+        circleGreenPaint.setColor(getResources().getColor(R.color.green));
+
     }
 
-    public void init(AttributeSet attrs)
-    {
+    public void init(AttributeSet attrs) {
         // Go through all custom attrs.
         TypedArray attrsArray = getContext().obtainStyledAttributes(attrs, R.styleable.circleview);
         circleRadius = attrsArray.getInteger(R.styleable.circleview_cRadius, 0);
@@ -56,34 +85,57 @@ public class CircleView extends View{
     protected void onDraw(Canvas canvas) {
         // Move canvas down and right 1 pixel.
         // Otherwise the stroke gets cut off.
-        canvas.translate(1,1);
+        canvas.translate(1, 1);
         circlePaint.setColor(circleFillColor);
         canvas.drawArc(circleArc, circleStartAngle, circleEndAngle, true, circlePaint);
         canvas.drawArc(circleArc, circleStartAngle, circleEndAngle, true, circleStrokePaint);
 
+        canvas.drawArc(circleArc, circleStartAngle, circleEndAngle, false, circleRedPaint);
 
-
+        canvas.drawArc(circleArc, 0, 60, true, circleDividerPaint);
+        canvas.drawArc(circleArc, 60, 120, true, circleDividerPaint);
+        canvas.drawArc(circleArc, 120, 180, true, circleDividerPaint);
+        canvas.drawArc(circleArc, 180, 240, true, circleDividerPaint);
+        canvas.drawArc(circleArc, 240, 300, true, circleDividerPaint);
         circlePaint.setTextAlign(Paint.Align.CENTER);
+
+        //draw jalapenos
+
+//        canvas.drawCircle(95, 155, 10, circleGreenPaint);
+//        canvas.drawCircle(105, 215, 10, circleGreenPaint);
+//        canvas.drawCircle(260, 195, 10, circleGreenPaint);
+//        canvas.drawCircle(190, 255, 10, circleGreenPaint);
+//        canvas.drawCircle(220, 375, 10, circleGreenPaint);
+//        canvas.drawCircle(295, 295, 10, circleGreenPaint);
+
+        //draw chillies
+
+
+
+
+
+
+
 
     }
 
-    @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
-    {
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
         int measuredWidth = measureWidth(widthMeasureSpec);
-        if(circleRadius == 0) {
+        if (circleRadius == 0) {
             // Check width size. Make radius half of available.
             circleRadius = measuredWidth / 2;
             int tempRadiusHeight = measureHeight(heightMeasureSpec) / 2;
-            if(tempRadiusHeight < circleRadius)
+            if (tempRadiusHeight < circleRadius)
                 // Check height, if height is smaller than
                 // width, then go half height as radius.
                 circleRadius = tempRadiusHeight;
         }
         // Remove 2 pixels for the stroke.
-        int circleDiameter = circleRadius * 2 - 2;
+        int circleDiameter = circleRadius * 2 - 50;
         // RectF(float left, float top, float right, float bottom)
-        circleArc = new RectF(0, 0, circleDiameter, circleDiameter);
+        circleArc = new RectF(20, 20, circleDiameter, circleDiameter);
 
 //        circleArc = new RectF(130, 40, circleDiameter, circleDiameter);
 
@@ -122,11 +174,16 @@ public class CircleView extends View{
     }
 
 
+    public void setSlices(int slices) {
+        slices = slices;
+    }
+
 
     public void setCircleRadius(int radius)
 
     {
-        circleRadius=radius;
+        circleRadius = radius;
+
 
     }
 }

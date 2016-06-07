@@ -10,28 +10,28 @@
     android:paddingTop="4dp"
     tools:context="com.ma.android.pizza.SplashActivity">
 
-<TextView
-    android:id="@+id/tvHeader"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:textColor="@android:color/white"
-    android:textSize="22sp"
-    android:textStyle="bold"
-    android:text="Select Size"
-    android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="Select Size"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 
     <LinearLayout
         android:id="@+id/pizzaContainer"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="320dp"
+        android:layout_below="@+id/tvHeader"
         android:layout_marginLeft="40dp"
         android:gravity="center_vertical|center_horizontal"
-        android:orientation="vertical"
 
-        android:layout_below="@+id/tvHeader"
+        android:orientation="vertical"
         android:weightSum="1">
 
         <com.ma.android.pizza.CircleView
@@ -41,8 +41,9 @@
             android:layout_weight=".8"
             circleview:cAngleEnd="360"
             circleview:cAngleStart="0"
-            circleview:cFillColor="#DDaa99"
-            circleview:cStrokeColor="@android:color/white"
+            circleview:cFillColor="#fffa8a"
+
+            circleview:cStrokeColor="#E6B364"
 
             />
 
@@ -52,8 +53,8 @@
         android:id="@+id/sizeLL"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginBottom="4dp"
         android:layout_below="@+id/pizzaContainer"
+        android:layout_marginBottom="4dp"
 
         android:weightSum="3">
 
@@ -145,20 +146,21 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
 
-        android:indeterminate="false"
         android:layout_below="@+id/sizeLL"
+        android:layout_marginTop="16dp"
 
+        android:indeterminate="false"
         android:paddingLeft="45dp"
-        android:paddingRight="15dp"
 
+        android:paddingRight="15dp"
         android:progress="10"
-android:layout_marginTop="16dp"
         android:progressDrawable="@drawable/seekbar_progress"
         android:thumb="@mipmap/ic_pizz" />
 
-    <include layout="@layout/bottom_select"
-        android:layout_below="@id/seekBar1"
+    <include
+        layout="@layout/bottom_select"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"/>
+        android:layout_below="@id/seekBar1"
+        android:layout_marginTop="8dp" />
 </RelativeLayout>
