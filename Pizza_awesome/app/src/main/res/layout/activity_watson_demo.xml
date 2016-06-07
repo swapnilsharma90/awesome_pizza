@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:circleview="http://schemas.android.com/apk/res-auto"
+    android:background="#00BFFF"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.ma.android.pizza.SplashActivity">
+
+
+
+            <TextView
+                android:id="@+id/tvDummyArcticle"
+                android:layout_width="wrap_content"
+                android:layout_height="350dp"
+                android:text="
+On 28 March 2014, the Parliamentary Secretary to the Treasurer delivered a speech on the Government's agenda for tax policy at The Tax Institute's 29th National Convention.
+
+Key points include:
+
+Treasury and the ATO have established a new joint committee with the private sector, the Tax System Committee, to address new and emerging challenges in tax policy and law design
+A working group (comprising Treasury, the ATO and representatives of the private sector) has been established to consider a statutory remedial power for the Commissioner to resolve unintended and anomalous outcomes. The outcome of the working group's consideration will inform Treasury's advice to the Government on whether such a power is appropriate, and if so, what form it could take
+The Government has requested that the Board of Taxation conduct a fast-track review of impediments in the tax system that unreasonably affect small business.
+The appropriate taxation of trusts will be considered in the context of the tax white paper
+The Government will consult extensively with the community during the development of the tax white paper and intends to release an initial discussion paper inviting comments from the public. Any proposed tax changes flowing from the tax white paper will be taken to the next election
+The Government is expected to release soon a discussion paper to consult with business on the timing for implementation of the common reporting standard (a standard for the automatic collection of financial account information on non-residents) and how compliance costs can be minimised."
+                android:paddingTop="8dp"
+
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Analyse using AI"
+        android:id="@+id/btnAnalyse"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
