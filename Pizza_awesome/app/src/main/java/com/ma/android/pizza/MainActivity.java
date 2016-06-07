@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -17,12 +20,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     SeekBar sb;
-
     TextView tvMedium, tvLarge, tvReg;
     TextView tvMediumDesc, tvLargeDesc, tvRegDesc;
-
-
     CircleView pizzaCircle;
+
+    LinearLayout llSize;
+    String selectedSize;
+
+    RelativeLayout rlSelect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +35,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_new);
 
         sb = (SeekBar) findViewById(R.id.seekBar1);
-
         tvReg = (TextView) findViewById(R.id.tvRegular);
         tvMedium = (TextView) findViewById(R.id.tvMed);
         tvLarge = (TextView) findViewById(R.id.tvLarge);
-
         tvRegDesc = (TextView) findViewById(R.id.tvRegularDesc);
         tvMediumDesc = (TextView) findViewById(R.id.tvMedDesc);
         tvLargeDesc = (TextView) findViewById(R.id.tvLargeDesc);
-
-
         pizzaCircle = (CircleView) findViewById(R.id.pizzaCircle);
 
+        rlSelect = (RelativeLayout) findViewById(R.id.rlSelect);
+
+        llSize = (LinearLayout) findViewById(R.id.sizeLL);
 
         tvReg.setTextColor(getResources().getColor(R.color.colorAccent));
         tvRegDesc.setTextColor(getResources().getColor(R.color.colorAccent));
@@ -49,17 +53,30 @@ public class MainActivity extends AppCompatActivity {
         tvReg.setTextSize(20);
         tvRegDesc.setTextSize(16);
 
+
+        rlSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sb.setVisibility(View.GONE);
+                llSize.setVisibility(View.GONE);
+
+                Toast.makeText(MainActivity.this,"selected size is "+selectedSize,Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER;
-
-//        pizzaCircle.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-
         pizzaCircle.setLayoutParams(params);
-
 
         // pizzaCircle.gra
         pizzaCircle.setCircleRadius(270);
 
+        selectedSize="regular";
+        
+        //// TODO: 6/7/16 how to change size....on bCK SHOW SIZE OPTIONS
 
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -67,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
                 if (progress < 33) {
+
+                    selectedSize="regular";
 
                     pizzaCircle.setSlices(4);
 
@@ -93,6 +112,9 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 if (progress > 33 && (progress < 70)) {
+
+
+                    selectedSize="medium";
 
                     pizzaCircle.setSlices(6);
 
@@ -123,6 +145,8 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 if (progress > 70) {
+
+                    selectedSize="large";
 
                     pizzaCircle.setSlices(8);
 
